@@ -14,5 +14,11 @@
     "no-console": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error"
+  },
+  "globals": {
+    "console": false,
+    "process": false,
+    "IS_PRODUCTION": false,
+    "IS_DEVELOPMENT": false
   }
 }

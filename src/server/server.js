@@ -1,21 +1,21 @@
-import express from "express";
-import http from "http";
+import express from 'express';
+import http from 'http';
 
-import {isDevelopment} from "./settings";
+import {isDevelopment} from './settings';
 
 const app = express();
 const server = new http.Server(app);
 
-app.set("view engine", "pug");
-app.use(express.static("public"));
+app.set('view engine', 'pug');
+app.use(express.static('public'));
 
 const useExternalStyles = !isDevelopment;
 const scriptRoot = isDevelopment
-    ? "http://localhost:8080/build"
-    : "/build";
+    ? 'http://localhost:8080/build'
+    : '/build';
 
-app.get("*", (req, res) => {
-  res.render("index", {
+app.get('*', (req, res) => {
+  res.render('index', {
     useExternalStyles,
     scriptRoot
   });
