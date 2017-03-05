@@ -10,9 +10,8 @@ function createConfig(isDebug) {
     }),
     new ExtractTextPlugin({
       filename: '[name].css',
-      disable: process.env.NODE_ENV === "development"
+      disable: isDebug
     }),
-
     // create global constants which
     // can be configured at compile time.
     new webpack.DefinePlugin({
