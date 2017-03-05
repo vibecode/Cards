@@ -2,13 +2,19 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-module.exports = function (isDebug) {
+function createConfig(isDebug) {
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.js'
     }),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      disable: process.env.NODE_ENV === "development"
+    }),
+
+    // create global constants which
+    // can be configured at compile time.
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: `'${process.env.NODE_ENV || 'development'}'`
@@ -32,7 +38,6 @@ module.exports = function (isDebug) {
     publicPath = 'http://localhost:8080/build/';
   } else {
     plugins.push(
-        new ExtractTextPlugin({filename: '[name].css'}),
         new webpack.optimize.UglifyJsPlugin({
           compress: {
             warnings: false,
@@ -128,4 +133,6 @@ module.exports = function (isDebug) {
     },
     plugins
   };
-};
+}
+
+module.exports = createConfig(process.env.NODE_ENV !== "production");
