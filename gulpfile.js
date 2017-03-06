@@ -2,9 +2,9 @@ const gulp = require('gulp');
 const path = require('path');
 const rimraf = require('rimraf');
 const child_process = require('child_process');
-const webpack = require("webpack");
-const webpackConfig = require("./webpack.config.js");
-const WebpackDevServer = require("webpack-dev-server");
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+const WebpackDevServer = require('webpack-dev-server');
 
 const $ = require('gulp-load-plugins')();
 
@@ -104,7 +104,7 @@ function runServerTests() {
 
 const consoleStats = {
   colors: true,
-  exclude: ["node_modules"],
+  exclude: ['node_modules'],
   chunks: false,
   assets: true,
   timings: true,
@@ -113,21 +113,21 @@ const consoleStats = {
   version: false
 };
 
-gulp.task("client:clean", cb => {
-  rimraf("./public/build", () => cb());
+gulp.task('client:clean', cb => {
+  rimraf('./public/build', () => cb());
 });
 
 gulp.task(
-    "client:build",
+    'client:build',
     gulp.series(
-        "client:clean",
+        'client:clean',
         buildClient
     ));
 
 gulp.task(
-    "client:dev",
+    'client:dev',
     gulp.series(
-        "client:clean",
+        'client:clean',
         watchClient
     ));
 
@@ -147,7 +147,7 @@ function watchClient() {
   const compiler = webpack(webpackConfig);
 
   const server = new WebpackDevServer(compiler, {
-    publicPath: "/build/",
+    publicPath: '/build/',
     hot: true,
     stats: consoleStats
   });
@@ -157,5 +157,5 @@ function watchClient() {
 
 // -----------------------------------
 // Other Tasks
-gulp.task("dev", gulp.parallel("server:dev", "client:dev"));
-gulp.task("build", gulp.parallel("server:build", "client:build"));
+gulp.task('dev', gulp.parallel('server:dev', 'client:dev'));
+gulp.task('build', gulp.parallel('server:build', 'client:build'));

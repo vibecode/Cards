@@ -24,7 +24,7 @@ function createConfig(isDebug) {
     })
   ];
 
-  const clientEntry = ['./src/client/client.js'];
+  const clientEntry = ['babel-polyfill', './src/client/client.js'];
   let publicPath = '/build/';
 
   if (isDebug) {
@@ -63,7 +63,14 @@ function createConfig(isDebug) {
     devtool: isDebug ? 'eval-source-map' : 'source-map',
     entry: {
       app: clientEntry,
-      vendor: ['react', 'react-dom']
+      vendor: [
+          'lodash',
+          'react',
+          'react-dom',
+          'react-router',
+          'socket.io-client',
+          'rxjs'
+      ]
     },
     output: {
       path: path.join(__dirname, 'public', 'build'),
@@ -91,10 +98,10 @@ function createConfig(isDebug) {
         {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
+            fallback: 'style-loader',
             use: [
               {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                   sourceMap: true,
                   importLoaders: 1
@@ -121,7 +128,7 @@ function createConfig(isDebug) {
             fallback: 'style-loader',
             use: [
               {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                   sourceMap: true,
                   importLoaders: 1
@@ -140,7 +147,7 @@ function createConfig(isDebug) {
                 }
               },
               {
-                loader: "sass-loader",
+                loader: 'sass-loader',
                 options: {
                   sourceMap: true
                 }
@@ -161,4 +168,4 @@ function createConfig(isDebug) {
   };
 }
 
-module.exports = createConfig(process.env.NODE_ENV !== "production");
+module.exports = createConfig(process.env.NODE_ENV !== 'production');
