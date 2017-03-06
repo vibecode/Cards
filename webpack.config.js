@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const postcssCssnext = require('postcss-cssnext');
 
 function createConfig(isDebug) {
   const plugins = [
@@ -95,7 +96,20 @@ function createConfig(isDebug) {
               {
                 loader: "css-loader",
                 options: {
-                  sourceMap: true
+                  sourceMap: true,
+                  importLoaders: 1
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: true,
+                  plugins: () => [
+                    postcssCssnext({
+                      browsers: ['last 2 versions', 'ie >= 9'],
+                      compress: true,
+                    })
+                  ]
                 }
               }
             ]
@@ -109,7 +123,20 @@ function createConfig(isDebug) {
               {
                 loader: "css-loader",
                 options: {
-                  sourceMap: true
+                  sourceMap: true,
+                  importLoaders: 1
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: true,
+                  plugins: () => [
+                    postcssCssnext({
+                      browsers: ['last 2 versions', 'ie >= 9'],
+                      compress: true
+                    })
+                  ]
                 }
               },
               {
@@ -117,7 +144,7 @@ function createConfig(isDebug) {
                 options: {
                   sourceMap: true
                 }
-              },
+              }
             ]
           })
         },
