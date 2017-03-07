@@ -1,7 +1,7 @@
-import express from 'express';
-import http from 'http';
+const express = require('express');
+const http = require('http');
 
-import {isDevelopment} from './settings';
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 const app = express();
 const server = new http.Server(app);

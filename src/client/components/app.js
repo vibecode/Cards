@@ -1,24 +1,23 @@
-import "./app.scss";
-
-import React, {Component} from "react";
+import './app.scss';
+import React, { Component } from 'react';
 
 class AppContainer extends Component {
-	componentDidMount() {
-		console.log("HEY THERE");
-	}
+  componentDidMount() {
+    console.log('HEY THERE');
+  }
 
-	render() {
-		return (
-			<section>
-				<h1>Hello World: SADSAFSAdd</h1>
-				<button onClick={this._click.bind(this)}>I am button plz click</button>
-			</section>
-		);
-	}
+  render() {
+    const { main, sidebar } = this.props;
+    return (
+        <div className={`c-application`}>
 
-	_click() {
-		console.log("STUFF");
-	}
+        </div>
+    );
+  }
+
+  _click() {
+    console.log('STUFF');
+  }
 }
 
 export default AppContainer;
