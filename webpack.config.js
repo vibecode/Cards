@@ -13,8 +13,7 @@ function createConfig(isDebug) {
       filename: '[name].css',
       disable: isDebug
     }),
-    // create global constants which
-    // can be configured at compile time.
+
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: `'${process.env.NODE_ENV || 'development'}'`
@@ -156,10 +155,10 @@ function createConfig(isDebug) {
           })
         },
         {
-          test: /test:\.(png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)/,
+          test: /\.(png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?.*$|$)/,
           loader: 'url-loader',
           options: {
-            limit: 5000,
+            limit: 10000,
           }
         }
       ]

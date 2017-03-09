@@ -9,13 +9,23 @@ class AppContainer extends Component {
   render() {
     const { main, sidebar } = this.props;
     return (
-        <div className={`c-application`}>
-
+        <div className="app">
+          <div className="dialogs">
+            hello
+          </div>
+          <div className="app__inner">
+            <div className="sidebar">
+              {sidebar}
+            </div>
+            <div className="main">
+              {main}
+            </div>
+          </div>
         </div>
     );
   }
 
-  _click() {
+  click() {
     console.log('STUFF');
   }
 }

@@ -1,1 +1,28 @@
-body {}
+@import '../variables';
+@import '../mixins';
+
+.sidebar {
+  @include section;
+  width: 260px;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+
+  &__section {
+    padding: 5px;
+  }
+
+  &__buttons-box {
+    margin: 0 10px;
+    flex: none;
+    width: 100%;
+    display: block;
+  }
+
+  &__button {
+    width: 100%;
+    display: block;
+    margin: 10px 0;
+  }
+}
+
